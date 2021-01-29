@@ -1,5 +1,5 @@
 require('dotenv').config();
-const twit = require('./bot.js');
+const twit = require('./bot');
 const fs = require('fs')
 const path = require('path')
 const paramsPath = path.join(__dirname, 'params.json');
@@ -74,7 +74,7 @@ async function main () {
 }
 
 //running bot logic
-console.log('starting tweetr bot')
+console.log('starting tweeter bot')
 
 //getting after 10 sec
-setInterval(main, 100000)
+setInterval(main, 10000)
