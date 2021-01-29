@@ -1,0 +1,25 @@
+{
+  "name": "simple-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chait04/simple-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chait04/simple-project/issues"
+  },
+  "homepage": "https://github.com/chait04/simple-project#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7",
+    "twit": "^2.2.11"
+  }
+}
