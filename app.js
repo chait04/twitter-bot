@@ -1,7 +1,9 @@
 require('dotenv').config();
 const twit = require('./bot');
+//to read json file adding fs and path 
 const fs = require('fs')
 const path = require('path')
+//finally adding json file
 const paramsPath = path.join(__dirname, 'params.json');
 
 
@@ -20,7 +22,8 @@ function readParams() {
 function getTweets(since_id) {
     return new Promise((resolve, reject) => {
         let params = {
-            1: '#cwod',
+            q: '#crio_do',//the hashtag we are going to use
+            result_type: 'recent',
             count: 10,
         };
         //doing this bcoz we dont want our bot to retweet the retweeted tweet.
@@ -28,7 +31,10 @@ function getTweets(since_id) {
             params.since_id = since_id;
         }
         console.log('chaitanya is getting tweets...', params);
-        twit.get('search/twits', params, (err, data) => {
+        twit.get('search/tweets', params, (err, data) => {
+            if(data) {
+                console.log(data)
+            }
             if(err){
                 return reject(err);
             }
@@ -57,11 +63,12 @@ async function main () {
     try {
         const params = readParams();
         const data = await getTweets(params.since_id);
-        const tweets = await data.statuses;
+        const tweets = data.statuses;
         console.log('We got the tweets', tweets.length);
         for await (let tweet of tweets){
             try {
                 await postRetweet(tweet.id_str)
+                console.log('Successful retweet ' + tweet.id_str);
             } catch (error) {
                 console.log('Unsuccesfull retweet' + tweet.id_str);
             }
@@ -69,7 +76,7 @@ async function main () {
         }
         writeParams(params);
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 
