@@ -47,7 +47,7 @@ function getTweets(since_id) {
 function postRetweet(id){
     return new Promise((resolve, reject) => {
         let params = {
-            id,
+            id ,
         };
         twit.post('statuses/retweet/:id', params, (err, data) => {
             if(err){
@@ -81,7 +81,7 @@ async function main () {
 }
 
 //running bot logic
-console.log('starting tweeter bot')
+console.log('Starting twitter Bot')
 
 //getting after 10 sec
 setInterval(main, 10000)
